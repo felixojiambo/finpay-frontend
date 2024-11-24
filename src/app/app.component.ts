@@ -5,11 +5,12 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ThemeService } from './core/services/theme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, SidenavComponent, RouterOutlet, CommonModule, FooterComponent],
+  imports: [HeaderComponent,HttpClientModule, SidenavComponent, RouterOutlet, CommonModule, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
