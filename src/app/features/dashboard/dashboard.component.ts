@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -24,7 +24,7 @@ Chart.register(...registerables);
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   metrics: Metric[] = [];
   isLoading: boolean = true;
   errorMessage: string = '';
@@ -38,6 +38,10 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
+    // Intentionally left blank
+  }
+
+  ngAfterViewInit(): void {
     this.fetchDashboardData();
   }
 
@@ -53,7 +57,7 @@ export class DashboardComponent implements OnInit {
         this.metrics = result.metrics;
         this.isLoading = false;
 
-        // Initialize the chart after data is fetched
+        // Initialize the chart after data is fetched and view is initialized
         this.initializeRevenueChart(result.revenueData);
       },
       error: (error) => {
@@ -104,18 +108,8 @@ export class DashboardComponent implements OnInit {
           },
         },
       });
-    }
-  }
-
-  /**
-   * Updates the revenue chart with new data.
-   * @param revenueData - The new data for the revenue chart.
-   */
-  updateRevenueChart(revenueData: RevenueChartData): void {
-    if (this.revenueChart) {
-      this.revenueChart.data.labels = revenueData.labels;
-      this.revenueChart.data.datasets[0].data = revenueData.data;
-      this.revenueChart.update();
+    } else {
+      console.error('Cannot get canvas context');
     }
   }
 }

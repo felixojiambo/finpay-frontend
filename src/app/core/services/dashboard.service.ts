@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 // Define interface for metrics
 export interface Metric {
@@ -29,7 +29,8 @@ export class DashboardService {
    * @returns Observable<Metric[]> - An observable containing the list of metrics.
    */
   getMetrics(): Observable<Metric[]> {
-    return this.http.get<Metric[]>(`${this.apiBase}/metrics`).pipe(
+    return this.http.get<{ data: Metric[] }>(`${this.apiBase}/metrics`).pipe(
+      map(response => response.data), // Extract the 'data' property
       catchError((error) => {
         console.error('Error fetching metrics:', error);
         // Fallback to default mock data on error
@@ -47,7 +48,8 @@ export class DashboardService {
    * @returns Observable<RevenueChartData> - An observable containing revenue chart data.
    */
   getRevenueChartData(): Observable<RevenueChartData> {
-    return this.http.get<RevenueChartData>(`${this.apiBase}/revenue`).pipe(
+    return this.http.get<{ data: RevenueChartData }>(`${this.apiBase}/revenue`).pipe(
+      map(response => response.data), // Extract the 'data' property
       catchError((error) => {
         console.error('Error fetching revenue data:', error);
         // Fallback to default mock data on error
