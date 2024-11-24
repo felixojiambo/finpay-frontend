@@ -1,0 +1,74 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #ffffff; /* Light mode background */
+    color: #1f2937; /* Light mode text */
+    padding: 1rem 0;
+    border-top: 1px solid #e5e7eb; /* Light mode border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      background-color: #1f2937; /* Dark mode background */
+      color: #ffffff; /* Dark mode text */
+      border-top: 1px solid #374151; /* Dark mode border */
+    }
+  
+    /* Container styles */
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1.5rem;
+      }
+    }
+  
+    /* Copyright section */
+    .copyright {
+      font-size: 0.875rem;
+    }
+  
+    /* Quick links */
+    .quick-links {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+  
+      @media (min-width: 768px) {
+        margin-top: 0;
+      }
+  
+      a {
+        font-size: 0.875rem;
+        color: #1f2937; /* Light mode link color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #2563eb; /* Light mode hover color */
+        }
+  
+        /* Dark mode links */
+        @media (prefers-color-scheme: dark) {
+          color: #ffffff; /* Dark mode link color */
+  
+          &:hover {
+            color: #93c5fd; /* Dark mode hover color */
+          }
+        }
+      }
+    }
+  }
+  
