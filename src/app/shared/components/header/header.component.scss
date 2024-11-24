@@ -1,0 +1,46 @@
+.header-toolbar {
+    background-color: #ffffff;
+    color: #3f51b5;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+  
+    &.dark-mode {
+      background-color: #3f51b5;
+      color: #ffffff;
+    }
+  }
+  
+  .menu-button,
+  .theme-button {
+    color: inherit;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+  
+    .logo {
+      height: 40px;
+      width: auto;
+      margin-right: 8px;
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  
+    .company-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  

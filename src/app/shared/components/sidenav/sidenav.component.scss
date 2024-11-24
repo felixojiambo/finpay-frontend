@@ -1,0 +1,73 @@
+.sidenav-container {
+    height: 100vh;
+  }
+  
+  .sidenav {
+    width: 250px;
+    background-color: #3f51b5; /* Angular Material Indigo */
+    color: white;
+    display: flex;
+    flex-direction: column;
+  
+    .sidenav-header {
+      padding: 16px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      h2 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+    }
+  
+    mat-nav-list {
+      flex: 1;
+      overflow: auto;
+  
+      .group-header {
+        padding: 12px 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: bold;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        &:focus {
+          outline: none;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+  
+      .group-items {
+        padding-left: 16px;
+  
+        .nav-item {
+          display: flex;
+          align-items: center;
+          padding: 8px 16px;
+          border-radius: 4px;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+          &.active {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          .icon {
+            margin-right: 16px;
+          }
+          .item-label {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  
+  mat-sidenav-content {
+    padding: 24px;
+    background-color: #f5f5f5;
+    height: 100vh;
+    overflow: auto;
+  }
+  

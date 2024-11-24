@@ -1,1 +1,59 @@
-<p>sidenav works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #drawer
+      [mode]="isSidenavWide ? 'side' : 'over'"
+      [opened]="isSidenavWide"
+      class="sidenav"
+      role="navigation"
+      aria-label="Main Navigation"
+    >
+      <div class="sidenav-header">
+        <h2>FinPay</h2>
+      </div>
+  
+      <mat-nav-list>
+        <ng-container *ngFor="let group of groupedNavItems">
+          <!-- Group Header without dropdown arrows -->
+          <div
+            class="group-header"
+            (click)="toggleGroup(group.group)"
+            tabindex="0"
+            role="button"
+            [attr.aria-expanded]="isGroupOpen(group.group)"
+            [attr.aria-controls]="sanitizeGroupId(group.group) + '-items'"
+            (keydown.enter)="toggleGroup(group.group)"
+            (keydown.space)="toggleGroup(group.group)"
+          >
+            <span>{{ group.group }}</span>
+          </div>
+  
+          <!-- Group Items shown without arrows -->
+          <div
+            *ngIf="isGroupOpen(group.group)"
+            [id]="sanitizeGroupId(group.group) + '-items'"
+            class="group-items"
+          >
+            <ng-container *ngFor="let item of group.items">
+              <a
+                mat-list-item
+                [routerLink]="item.route"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-item"
+                tabindex="0"
+              >
+                <mat-icon class="icon">{{ item.icon }}</mat-icon>
+                <span *ngIf="isSidenavWide" class="item-label">{{ item.label }}</span>
+              </a>
+            </ng-container>
+          </div>
+        </ng-container>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <!-- Optionally include a header here -->
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
