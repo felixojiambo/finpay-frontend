@@ -1,0 +1,37 @@
+<div class="dashboard-container">
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Metrics Section -->
+  <div class="metrics-grid" *ngIf="!isLoading && !errorMessage">
+    <mat-card *ngFor="let metric of metrics" class="metric-card">
+      <div class="metric-icon">
+        <mat-icon>{{ metric.icon }}</mat-icon>
+      </div>
+      <div class="metric-details">
+        <h3>{{ metric.value }}</h3>
+        <p>{{ metric.title }}</p>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Revenue Chart Section -->
+  <div class="chart-container" *ngIf="!isLoading && !errorMessage">
+    <h2>Revenue Growth</h2>
+    <canvas #revenueChart></canvas>
+  </div>
+
+  <!-- Quick Links Section -->
+  <div class="quick-links" *ngIf="!isLoading && !errorMessage">
+    <mat-card class="quick-link" *ngFor="let link of ['Invoices', 'Payments', 'Reports']">
+      <button mat-button color="primary">{{ link }}</button>
+    </mat-card>
+  </div>
+</div>

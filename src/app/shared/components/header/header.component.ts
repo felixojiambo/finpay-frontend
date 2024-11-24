@@ -1,8 +1,9 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -11,27 +12,19 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
-  @Output() toggleTheme = new EventEmitter<void>();
 
-  isDarkMode: boolean = false;
   isProfileDropdownOpen: boolean = false;
 
-  ngOnInit(): void {
-    // Initialize theme based on localStorage
-    this.isDarkMode = localStorage.getItem('theme') === 'dark';
-  }
+  constructor(public themeService: ThemeService) {}
 
   onToggleSidebar(): void {
     this.toggleSidebar.emit();
   }
 
   onToggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
-    this.toggleTheme.emit();
-    // Persist theme preference
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+    this.themeService.toggleTheme(); // Delegate theme toggling to ThemeService
   }
 
   toggleProfileDropdown(): void {

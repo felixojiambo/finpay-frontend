@@ -61,6 +61,6 @@
     aria-label="Toggle theme"
     class="theme-button text-gray-800 dark:text-gray-200 focus:outline-none"
   >
-    <mat-icon>{{ isDarkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
+    <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_4' }}</mat-icon>
   </button>
 </mat-toolbar>
