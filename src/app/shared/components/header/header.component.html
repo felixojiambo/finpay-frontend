@@ -1,35 +1,66 @@
-<mat-toolbar color="primary" class="header-toolbar">
-    <!-- Sidebar Toggle Button -->
+<mat-toolbar
+  class="header-toolbar bg-white dark:bg-gray-800 text-gray-800 dark:text-white transition-colors duration-300 fixed top-0 left-0 w-full z-50"
+>
+  <!-- Sidebar Toggle Button -->
+  <button
+    mat-icon-button
+    (click)="onToggleSidebar()"
+    aria-label="Toggle sidebar"
+    class="text-gray-800 dark:text-gray-200 focus:outline-none"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Company Logo and Name -->
+  <div class="logo-container flex items-center ml-4">
+    <img
+      src="assets/logo.svg"
+      alt="Logo"
+      class="logo h-8 md:h-10 w-auto mr-3 transform transition-transform duration-200 hover:scale-105"
+      height="40"
+      width="40"
+    />
+    <span class="company-name text-xl font-bold">FINpay FINANCIAL REPORTING SYSTEM</span>
+  </div>
+
+  <!-- Spacer to push content to the right -->
+  <span class="spacer"></span>
+
+  <!-- User Profile Dropdown -->
+  <div class="relative" (click)="toggleProfileDropdown()" [class.active]="isProfileDropdownOpen">
     <button
       mat-icon-button
-      (click)="onToggleSidebar()"
-      aria-label="Toggle sidebar"
-      class="menu-button"
+      aria-label="User profile"
+      class="text-gray-800 dark:text-gray-200 focus:outline-none"
     >
-      <mat-icon>menu</mat-icon>
+      <mat-icon>account_circle</mat-icon>
     </button>
-  
-    <!-- Company Logo and Name -->
-    <div class="logo-container">
-      <img
-        src="assets/logo.svg"
-        alt="Logo"
-        class="logo"
-      />
-      <span class="company-name">FIN360 FINANCIAL REPORTING SYSTEM</span>
+    <div
+      *ngIf="isProfileDropdownOpen"
+      class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg z-20"
+    >
+      <a
+        href="#"
+        class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
+      >
+        Profile
+      </a>
+      <a
+        href="#"
+        class="block px-4 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
+      >
+        Logout
+      </a>
     </div>
-  
-    <!-- Spacer to push content to the right -->
-    <span class="spacer"></span>
-  
-    <!-- Theme Toggle Button -->
-    <button
-      mat-icon-button
-      (click)="onToggleTheme()"
-      aria-label="Toggle theme"
-      class="theme-button"
-    >
-      <mat-icon>{{ isDarkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
-    </button>
-  </mat-toolbar>
-  
+  </div>
+
+  <!-- Theme Toggle Button -->
+  <button
+    mat-icon-button
+    (click)="onToggleTheme()"
+    aria-label="Toggle theme"
+    class="theme-button text-gray-800 dark:text-gray-200 focus:outline-none"
+  >
+    <mat-icon>{{ isDarkMode ? 'brightness_7' : 'brightness_4' }}</mat-icon>
+  </button>
+</mat-toolbar>

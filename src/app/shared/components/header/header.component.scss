@@ -5,6 +5,11 @@
     align-items: center;
     padding: 0 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     transition: background-color 0.3s, color 0.3s;
   
     &.dark-mode {
@@ -28,6 +33,7 @@
       width: auto;
       margin-right: 8px;
       transition: transform 0.2s;
+  
       &:hover {
         transform: scale(1.05);
       }
@@ -42,5 +48,17 @@
   
   .spacer {
     flex: 1 1 auto;
+  }
+  
+  .relative {
+    position: relative;
+  
+    .active .dropdown {
+      display: block;
+    }
+  }
+  
+  .dropdown {
+    display: none;
   }
   
