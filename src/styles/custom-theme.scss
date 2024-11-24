@@ -1,0 +1,111 @@
+/* src/styles/custom-theme.scss */
+
+/* Import the Angular Material theming API */
+@use '~@angular/material' as mat;
+
+/* Import Google Fonts (optional) */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+/* Define your custom color palettes */
+
+/* Primary Palette */
+$primary-palette: (
+  50:  #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+  contrast: (
+    50:  mat.$black-87-opacity,
+    100: mat.$black-87-opacity,
+    200: mat.$black-87-opacity,
+    300: mat.$black-87-opacity,
+    400: mat.$black-87-opacity,
+    500: mat.$white-100-opacity,
+    600: mat.$white-100-opacity,
+    700: mat.$white-100-opacity,
+    800: mat.$white-100-opacity,
+    900: mat.$white-100-opacity,
+    A100: mat.$black-87-opacity,
+    A200: mat.$white-100-opacity,
+    A400: mat.$white-100-opacity,
+    A700: mat.$white-100-opacity,
+  )
+);
+
+/* Accent Palette */
+$accent-palette: (
+  50:  #fce4ec,
+  100: #f8bbd0,
+  200: #f48fb1,
+  300: #f06292,
+  400: #ec407a,
+  500: #e91e63,
+  600: #d81b60,
+  700: #c2185b,
+  800: #ad1457,
+  900: #880e4f,
+  A100: #ff80ab,
+  A200: #ff4081,
+  A400: #f50057,
+  A700: #c51162,
+  contrast: (
+    50:  mat.$black-87-opacity,
+    100: mat.$black-87-opacity,
+    200: mat.$black-87-opacity,
+    300: mat.$white-100-opacity,
+    400: mat.$white-100-opacity,
+    500: mat.$white-100-opacity,
+    600: mat.$white-100-opacity,
+    700: mat.$white-100-opacity,
+    800: mat.$white-100-opacity,
+    900: mat.$white-100-opacity,
+    A100: mat.$black-87-opacity,
+    A200: mat.$white-100-opacity,
+    A400: mat.$white-100-opacity,
+    A700: mat.$white-100-opacity,
+  )
+);
+
+/* Warn Palette */
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+/* Define the theme */
+$finpay-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette($primary-palette, 500),
+    accent: mat.define-palette($accent-palette, 500, 100, 700),
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config((
+    font-family: 'Roboto, Arial, sans-serif',
+    headline1: mat.define-typography-level(96px, 96px, 300),
+    headline2: mat.define-typography-level(60px, 60px, 300),
+    headline3: mat.define-typography-level(48px, 48px, 400),
+    headline4: mat.define-typography-level(34px, 48px, 400),
+    headline5: mat.define-typography-level(24px, 32px, 400),
+    headline6: mat.define-typography-level(20px, 32px, 500),
+    subtitle1: mat.define-typography-level(16px, 24px, 400),
+    subtitle2: mat.define-typography-level(14px, 24px, 500),
+    body1: mat.define-typography-level(16px, 24px, 400),
+    body2: mat.define-typography-level(14px, 20px, 400),
+    button: mat.define-typography-level(14px, 14px, 500, $letter-spacing: 1.25px),
+    caption: mat.define-typography-level(12px, 16px, 400),
+    overline: mat.define-typography-level(10px, 16px, 400, $letter-spacing: 1.5px),
+  )),
+));
+
+/* Include the Angular Material theming styles */
+@include mat.core();
+@include mat.all-component-themes($finpay-theme);
+@include mat.angular-material-typography($finpay-theme);
+@include mat.all-component-typographies($finpay-theme);
